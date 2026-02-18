@@ -6,7 +6,7 @@ A collection of [Agent Skills](https://agentskills.io) -- reusable instruction p
 
 | Skill | Description |
 |-------|-------------|
-| [nlm-new](skills/nlm-new/SKILL.md) | Creates a complete NotebookLM learning package for a topic -- research, summaries, slide decks, videos, audio, and per-unit infographics |
+| [nlm-new-topic](skills/nlm-new-topic/SKILL.md) | Creates a complete NotebookLM learning package for a topic -- research, summaries, slide decks, videos, audio, and per-unit infographics |
 | [nlm-deepdive](skills/nlm-deepdive/SKILL.md) | Deep dives into a subtopic within an existing NotebookLM notebook with parallel artifact generation |
 
 ## Installation
@@ -24,10 +24,10 @@ Example:
 
 ```bash
 # Install a skill for Claude Code (personal, all projects)
-cp -r skills/nlm-new ~/.claude/skills/nlm-new
+cp -r skills/nlm-new-topic ~/.claude/skills/nlm-new-topic
 
 # Or project-local
-cp -r skills/nlm-new .claude/skills/nlm-new
+cp -r skills/nlm-new-topic .claude/skills/nlm-new-topic
 ```
 
 OpenCode also auto-discovers skills in `.claude/skills/` and `.agents/skills/`.

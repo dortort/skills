@@ -46,7 +46,7 @@ nlm notebook list --title
 Match the subtopic against notebook titles to find the most relevant one:
 - If **exactly one** good match → confirm with the user and proceed
 - If **multiple candidates** or **no clear match** → present the top 3 options and ask the user to pick
-- If **no notebooks exist** → tell the user to create one first (e.g., with `/nlm-new`)
+- If **no notebooks exist** → tell the user to create one first (e.g., with `/nlm-new-topic`)
 
 ---
 

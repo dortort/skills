@@ -1,17 +1,17 @@
 ---
-name: nlm-new
-description: Creates a NotebookLM learning package for a topic. Automates notebook creation, source research, summary slides/video/audio/report, topic decomposition into sequential learning units, and per-unit infographics and video overviews. Supports optional source URLs and files. Use when user says "nlm-new", "learning package for", or "notebooklm for".
+name: nlm-new-topic
+description: Creates a NotebookLM learning package for a topic. Automates notebook creation, source research, summary slides/video/audio/report, topic decomposition into sequential learning units, and per-unit infographics and video overviews. Supports optional source URLs and files. Use when user says "nlm-new-topic", "learning package for", or "notebooklm for".
 user-invocable: true
 ---
 
-# NLM New — NotebookLM Learning Package Creator
+# NLM New Topic — NotebookLM Learning Package Creator
 
 Creates a complete NotebookLM learning package for any topic using the NLM CLI (`/Users/user/.local/bin/nlm`).
 
 ## Input Format
 
 ```
-/nlm-new <topic> [--url <url1> --url <url2>] [--file <path>]
+/nlm-new-topic <topic> [--url <url1> --url <url2>] [--file <path>]
 ```
 
 - `<topic>` is **required**
