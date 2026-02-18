@@ -66,6 +66,13 @@ Best practices for writing effective skills:
 - [What are skills?](https://agentskills.io/what-are-skills) (Agent Skills) -- overview of the open standard
 - [Agent Skills Specification](https://agentskills.io/specification) (Agent Skills) -- full format spec for SKILL.md files
 
+## Other Skill Repositories
+
+- [anthropics/skills](https://github.com/anthropics/skills) -- Anthropic's official skill collection
+- [openai/skills](https://github.com/openai/skills) -- OpenAI's official skill collection
+- [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) -- Marketing-focused skills
+- [forrestchang/andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills) -- Andrej Karpathy-inspired skills
+
 ## Contributing
 
 To add a new skill:
