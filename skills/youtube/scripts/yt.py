@@ -51,6 +51,7 @@ SCOPES = [
 
 # ── Auth ───────────────────────────────────────────────────────────────────────
 
+
 def _check_deps():
     try:
         import googleapiclient  # noqa: F401
@@ -170,7 +171,6 @@ def cmd_whoami(args, youtube):
     ch = _my_channel(youtube)
     s = ch["snippet"]
     st = ch.get("statistics", {})
-    cd = ch.get("contentDetails", {})
     print(f"Channel:     {s['title']}")
     print(f"ID:          {ch['id']}")
     print(f"Handle:      @{s.get('customUrl', '').lstrip('@')}")
@@ -335,11 +335,11 @@ def cmd_videos_upload(args, youtube):
     privacy = body["status"]["privacyStatus"]
     scheduled = body["status"].get("publishAt")
 
-    print(f"Upload complete!")
+    print("Upload complete!")
     print(f"  Video ID: {video_id}")
     print(f"  URL:      https://youtu.be/{video_id}")
     print(f"  Status:   {privacy}" + (f" (publishes {scheduled})" if scheduled else ""))
-    print(f"\nNext steps:")
+    print("\nNext steps:")
     print(f"  Set thumbnail:  python3 scripts/yt.py videos thumbnail {video_id} thumb.jpg")
     print(f"  Update metadata: python3 scripts/yt.py videos update {video_id} --title '...'")
     if privacy == "private":
