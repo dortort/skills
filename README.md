@@ -9,6 +9,7 @@ A collection of [Agent Skills](https://agentskills.io) -- reusable instruction p
 | [nlm-new-topic](skills/nlm-new-topic/SKILL.md) | Creates a complete NotebookLM learning package for a topic -- research, summaries, slide decks, videos, audio, and per-unit infographics |
 | [nlm-deepdive](skills/nlm-deepdive/SKILL.md) | Deep dives into a subtopic within an existing NotebookLM notebook with parallel artifact generation |
 | [terraform](skills/terraform/SKILL.md) | Writes Terraform infrastructure code following strict module abstraction principles, latest stable releases, provider doc lookups, and pre-commit format/init/validate |
+| [youtube](skills/youtube/SKILL.md) | Manages YouTube channels and videos via the YouTube Data API v3 — upload videos, update metadata, set thumbnails, manage playlists, moderate comments, search content, and bulk-edit via CSV |
 
 ## Installation
 
@@ -25,6 +26,7 @@ After installation the skills are available as slash commands with the `dortort`
 - `/dortort:nlm-new-topic`
 - `/dortort:nlm-deepdive`
 - `/dortort:terraform`
+- `/dortort:youtube`
 
 To remove the plugin:
 

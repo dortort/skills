@@ -1,10 +1,10 @@
 {
   "name": "dortort",
-  "description": "NotebookLM automation and Terraform IaC skills — create learning packages, deep-dive into subtopics, and write infrastructure as code",
+  "description": "NotebookLM automation, Terraform IaC, and YouTube channel management skills — create learning packages, write infrastructure as code, and manage YouTube channels with the Data API",
   "version": "1.0.0",
   "author": {
     "name": "dortort"
   },
-  "keywords": ["notebooklm", "learning", "nlm", "terraform", "iac", "infrastructure"],
+  "keywords": ["notebooklm", "learning", "nlm", "terraform", "iac", "infrastructure", "youtube", "video", "channel", "creator"],
   "skills": "skills"
 }
