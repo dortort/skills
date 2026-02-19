@@ -24,6 +24,7 @@ After installation the skills are available as slash commands with the `dortort`
 
 - `/dortort:nlm-new-topic`
 - `/dortort:nlm-deepdive`
+- `/dortort:terraform`
 
 To remove the plugin:
 
