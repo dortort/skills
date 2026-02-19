@@ -1,0 +1,10 @@
+{
+  "name": "dortort",
+  "description": "NotebookLM automation skills — create learning packages and deep-dive into subtopics",
+  "version": "1.0.0",
+  "author": {
+    "name": "dortort"
+  },
+  "keywords": ["notebooklm", "learning", "nlm"],
+  "skills": "skills"
+}
