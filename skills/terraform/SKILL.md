@@ -144,6 +144,35 @@ variable "environment" {
 - Export values that callers will need to wire modules together or reference externally
 - Do not export internal implementation details that no caller would use
 
+### Dependency Injection
+
+Modules must not resolve their own dependencies via internal `data` source lookups. The caller is responsible for providing all external resource references as input variables.
+
+**Wrong:** A module that uses `data "aws_vpc" "main"` to look up the VPC by a name tag or environment convention.
+
+**Right:** The caller passes `var.vpc_id` directly. The module declares a `vpc_id` variable and uses it without performing any lookup.
+
+Apply this rule to any externally-owned resource: VPCs, IAM roles, KMS keys, Route 53 zones, etc. `data` sources are appropriate only for fetching provider-owned metadata (e.g. `data "aws_availability_zones"`, `data "aws_ami"`) or resources created within the same module call chain.
+
+### Polymorphism
+
+A module should adapt its behaviour based on input variables rather than requiring callers to use different modules for different environments. Use conditional expressions and feature flags to produce distinct configurations from a single module.
+
+```hcl
+variable "high_availability" {
+  description = "When true, deploys a multi-AZ, multi-instance configuration."
+  type        = bool
+  default     = false
+}
+
+resource "aws_instance" "this" {
+  count = var.high_availability ? 3 : 1
+  # ...
+}
+```
+
+This keeps the module surface small and ensures that production and development environments exercise the same code paths.
+
 ### Sub-modules
 
 Create a sub-module when:
@@ -215,6 +244,9 @@ Work through this before considering any module done:
 - [ ] Are all variables typed and described?
 - [ ] Are all outputs described?
 - [ ] Does complex logic inside this module delegate to a sub-module rather than bloating `main.tf`?
+- [ ] Does the module receive all external resource references as input variables rather than resolving them via internal `data` source lookups?
+- [ ] Does the module use conditional logic or feature flags to adapt behaviour, rather than requiring separate modules per environment?
+- [ ] Does the module avoid relying on naming conventions, environment names, or global state to locate resources?
 - [ ] Have `fmt`, `init -backend=false`, and `validate` all passed cleanly?
 
 ---
@@ -230,3 +262,6 @@ Work through this before considering any module done:
 | **`main.tf` exceeds ~80 lines and is hard to scan** | Extract a sub-module; do not keep complexity at the current level |
 | **Same pattern used in multiple places** | Extract a shared module; do not duplicate resource blocks |
 | **Registry documentation is unavailable** | Use the provider's GitHub `website/docs/r/` directory as fallback |
+| **Module uses a `data` source to look up an externally-owned resource** | Remove the lookup; add an input variable and require the caller to pass the ID |
+| **Module behaviour varies only by environment name or hard-coded convention** | Replace with a feature-flag variable; remove the environmental assumption |
+| **Module references a specific naming convention or global tag to find resources** | This is tight coupling — inject the resource reference as a variable instead |
