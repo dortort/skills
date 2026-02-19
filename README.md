@@ -11,6 +11,27 @@ A collection of [Agent Skills](https://agentskills.io) -- reusable instruction p
 
 ## Installation
 
+### Claude Code Plugin (recommended)
+
+Install all skills at once as a [Claude Code plugin](https://code.claude.com/docs/en/plugins):
+
+```bash
+claude plugin add -- https://github.com/dortort/skills
+```
+
+After installation the skills are available as slash commands with the `dortort` namespace:
+
+- `/dortort:nlm-new-topic`
+- `/dortort:nlm-deepdive`
+
+To remove the plugin:
+
+```bash
+claude plugin remove dortort
+```
+
+### Manual (copy individual skills)
+
 Each skill is a directory containing a `SKILL.md` file. Copy the skill folder into the appropriate location for your agent:
 
 | Agent | Personal | Project-local | Docs |
