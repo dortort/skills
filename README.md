@@ -8,6 +8,7 @@ A collection of [Agent Skills](https://agentskills.io) -- reusable instruction p
 |-------|-------------|
 | [nlm-new-topic](skills/nlm-new-topic/SKILL.md) | Creates a complete NotebookLM learning package for a topic -- research, summaries, slide decks, videos, audio, and per-unit infographics |
 | [nlm-deepdive](skills/nlm-deepdive/SKILL.md) | Deep dives into a subtopic within an existing NotebookLM notebook with parallel artifact generation |
+| [terraform](skills/terraform/SKILL.md) | Writes Terraform infrastructure code following strict module abstraction principles, latest stable releases, provider doc lookups, and pre-commit format/init/validate |
 
 ## Installation
 
