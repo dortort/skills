@@ -2,6 +2,8 @@
 name: youtube
 description: Manages YouTube channels and videos using the YouTube Data API v3. Handles OAuth2 authentication, video uploads with resumable transfer, metadata updates, thumbnail setting, playlist management, comment moderation, channel-wide search, and bulk CSV workflows. Use when the user wants to upload a video, manage their YouTube channel, update video titles or descriptions, create or manage playlists, list channel videos, search their content, export a video catalogue, or bulk-edit metadata. Trigger phrases include "youtube", "upload video", "channel manager", "my videos", "YouTube playlist", "YouTube API", "update metadata".
 user-invocable: true
+disable-model-invocation: true
+argument-hint: "<intent>"
 ---
 
 # YouTube — Creator & Channel Manager
