@@ -1,6 +1,6 @@
 ---
 name: terraform
-description: Writes Terraform infrastructure code following strict module abstraction principles, proper file structure, and quality standards. Modules are never thin resource wrappers — each represents a meaningful level of abstraction. Always uses the latest stable Terraform and provider releases. Always looks up provider documentation before writing code. Always runs format, init (no backend), and validate before committing. Use when user says "terraform", "write infrastructure", "create a terraform module", or "IaC".
+description: Writes Terraform infrastructure code following strict module abstraction principles, proper file structure, and quality standards. Modules are never thin resource wrappers — each represents a meaningful level of abstraction. Always uses the latest stable Terraform and provider releases. Always looks up provider documentation before writing code. Always runs format, init (no backend), and validate before committing. Use when user asks to write, create, add, update, or refactor Terraform code or modules, or mentions "terraform", "IaC", or "infrastructure as code".
 user-invocable: true
 ---
 
