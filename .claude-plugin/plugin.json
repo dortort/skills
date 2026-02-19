@@ -1,10 +1,10 @@
 {
   "name": "dortort",
-  "description": "NotebookLM automation skills — create learning packages and deep-dive into subtopics",
+  "description": "NotebookLM automation and Terraform IaC skills — create learning packages, deep-dive into subtopics, and write infrastructure as code",
   "version": "1.0.0",
   "author": {
     "name": "dortort"
   },
-  "keywords": ["notebooklm", "learning", "nlm"],
+  "keywords": ["notebooklm", "learning", "nlm", "terraform", "iac", "infrastructure"],
   "skills": "skills"
 }
