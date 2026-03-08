@@ -15,10 +15,17 @@ A collection of [Agent Skills](https://agentskills.io) -- reusable instruction p
 
 ### Claude Code Plugin (recommended)
 
-Install all skills at once as a [Claude Code plugin](https://code.claude.com/docs/en/plugins):
+Add this repository as a [Claude Code marketplace](https://code.claude.com/docs/en/plugins), then install individual skills:
 
 ```bash
-claude plugin add -- https://github.com/dortort/skills
+# Add the marketplace
+claude plugin marketplace add https://github.com/dortort/skills
+
+# Install individual skills
+claude plugin install nlm-new-topic
+claude plugin install nlm-deepdive
+claude plugin install terraform
+claude plugin install youtube
 ```
 
 After installation the skills are available as slash commands with the `dortort` namespace:
@@ -28,10 +35,11 @@ After installation the skills are available as slash commands with the `dortort`
 - `/dortort:terraform`
 - `/dortort:youtube`
 
-To remove the plugin:
+To remove a skill or the marketplace:
 
 ```bash
-claude plugin remove dortort
+claude plugin uninstall nlm-new-topic
+claude plugin marketplace remove dortort
 ```
 
 ### Manual (copy individual skills)
