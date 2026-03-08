@@ -122,18 +122,26 @@ nlm studio status <notebook_id> --json
 
 Poll up to 3 times with 60-second intervals until all new artifacts show complete status.
 
-**Step 4b — Rename videos in sequence order:**
+**Step 4b — Determine deep dive sequence prefix:**
 
-Use `nlm studio rename` to create a numbered playlist:
+From the `studio status --json` output in step 4a, inspect existing video names for the pattern `DD<number>-`. Find the highest existing deep dive number and increment by 1. If no existing deep dive sequences are found, start at 1.
+
+- No existing `DD*-` videos → prefix is `DD1-`
+- Existing `DD1-` videos → prefix is `DD2-`
+- Existing `DD1-` and `DD2-` videos → prefix is `DD3-`
+
+**Step 4c — Rename videos in sequence order:**
+
+Use `nlm studio rename` to create a numbered playlist with the determined prefix:
 
 ```bash
-nlm studio rename <unit1_video_id> "01 - <unit1 title>"
-nlm studio rename <unit2_video_id> "02 - <unit2 title>"
+nlm studio rename <unit1_video_id> "DD<X>-01 - <unit1 title>"
+nlm studio rename <unit2_video_id> "DD<X>-02 - <unit2 title>"
 ```
 
-Continue for each unit video in learning order.
+Where `<X>` is the deep dive sequence number from step 4b. Continue for each unit video in learning order. The `DD<X>-` prefix (Deep Dive #X) distinguishes these from the original new-topic sequence (`01`, `02`, ...) and from other deep dive sequences.
 
-**Step 4c — Present final report:**
+**Step 4d — Present final report:**
 
 ```
 ## Deep Dive Complete: <subtopic>
@@ -142,8 +150,8 @@ Continue for each unit video in learning order.
 **Notebook URL:** https://notebooklm.google.com/notebook/<notebook_id>
 
 ### Learning Units (Video Playlist Order)
-- **01 - <unit1 title>** — Infographic + Video
-- **02 - <unit2 title>** — Infographic + Video
+- **DD<X>-01 - <unit1 title>** — Infographic + Video
+- **DD<X>-02 - <unit2 title>** — Infographic + Video
 - ...
 
 ### Failed Artifacts (if any)
