@@ -72,10 +72,15 @@ Use source count to set target unit range:
 **Step 2c — Decompose the subtopic into learning units:**
 
 ```bash
-nlm notebook query <notebook_id> "Break the subtopic '<subtopic>' into sequential learning units of roughly equal information density. Each unit should have a short title (3-6 words) and a one-sentence description. Order them logically: foundational concepts first, then intermediate, then advanced. Return as a numbered list with format: 'N. Title — Description'. Target count: <target_count> units."
+nlm notebook query <notebook_id> "Break the subtopic '<subtopic>' into sequential learning units of roughly equal information density. Each unit MUST be mutually exclusive — no concept should appear in more than one unit. Each unit should have a short title (3-6 words), a one-sentence description of what it covers, and a one-sentence boundary note stating what it does NOT cover (i.e., what belongs to adjacent units). Order them logically: foundational concepts first, then intermediate, then advanced. Return as a numbered list with format: 'N. Title — Description. Boundary: <what this unit excludes>'. Target count: <target_count> units."
 ```
 
-**Parse the response** to extract unit titles for use as `--focus` parameters in Phase 3.
+**Parse the response** to extract for each unit:
+- **Title** (used for video naming)
+- **Description** (what the unit covers)
+- **Boundary** (what the unit excludes)
+
+All three are used to build the `--focus` parameter in Phase 3.
 
 ---
 
@@ -83,14 +88,14 @@ nlm notebook query <notebook_id> "Break the subtopic '<subtopic>' into sequentia
 
 Fire **ALL** per-unit artifact creation commands **in parallel** (maximize throughput):
 
-For every learning unit, fire both commands simultaneously:
+For every learning unit, fire both commands simultaneously using an **enriched focus prompt** that scopes content and prevents overlap with neighboring units:
 
 ```bash
-nlm infographic create <notebook_id> --focus "<unit title>" -y
-nlm video create <notebook_id> --focus "<unit title>" -y
+nlm infographic create <notebook_id> --focus "Unit <N> of <total>: <unit title>. <unit description>. Does NOT cover: <boundary>." -y
+nlm video create <notebook_id> --focus "Unit <N> of <total>: <unit title>. <unit description>. Does NOT cover: <boundary>." -y
 ```
 
-For example, with 5 units this fires 10 commands in parallel.
+Build the focus string from the parsed decomposition output (title + description + boundary). For example, with 5 units this fires 10 commands in parallel.
 
 **Error handling — retry with backoff:**
 
