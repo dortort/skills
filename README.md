@@ -105,6 +105,7 @@ Best practices for writing effective skills:
 - [openai/skills](https://github.com/openai/skills) -- OpenAI's official skill collection
 - [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) -- Marketing-focused skills
 - [forrestchang/andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills) -- Andrej Karpathy-inspired skills
+- [softaworks/agent-toolkit](https://github.com/softaworks/agent-toolkit) -- Skills for development, documentation, planning, and professional workflows
 
 ## Contributing
 
