@@ -125,6 +125,26 @@ await page.evaluate(() => {
 });
 ```
 
+## Browser Launch Script
+
+Write this as `launch.js` and run in background (`node launch.js &`). It opens the browser once with CDP enabled:
+```javascript
+const { chromium } = require('playwright');
+const path = require('path');
+const os = require('os');
+
+(async () => {
+  const browser = await chromium.launchPersistentContext(
+    path.join(os.homedir(), '.isc2-profile'),
+    { headless: false, viewport: { width: 1280, height: 1024 }, args: ['--remote-debugging-port=9222'] }
+  );
+  const page = browser.pages()[0] || await browser.newPage();
+  await page.goto('https://cpe.isc2.org/s/', { waitUntil: 'networkidle', timeout: 30000 });
+  console.log('Browser ready. CDP at http://localhost:9222');
+  // Keep running — do NOT close. The agent will connect via CDP for each step.
+})();
+```
+
 ## CDP Connection Boilerplate
 
 Every per-step script starts with this:
