@@ -8,6 +8,7 @@ A collection of [Agent Skills](https://agentskills.io) -- reusable instruction p
 |-------|-------------|
 | [nlm-new-topic](skills/nlm-new-topic/SKILL.md) | Creates a complete NotebookLM learning package for a topic -- research, summaries, slide decks, videos, audio, and per-unit infographics |
 | [nlm-deepdive](skills/nlm-deepdive/SKILL.md) | Deep dives into a subtopic within an existing NotebookLM notebook with parallel artifact generation |
+| [isc2-cpe-submission](skills/isc2-cpe-submission/SKILL.md) | Submits ISC2 CPE credits on cpe.isc2.org for CISSP, CCSP, and other ISC2 certifications — single or batch submissions via Playwright |
 | [terraform](skills/terraform/SKILL.md) | Writes Terraform infrastructure code following strict module abstraction principles, latest stable releases, provider doc lookups, and pre-commit format/init/validate |
 | [youtube](skills/youtube/SKILL.md) | Manages YouTube channels and videos via the YouTube Data API v3 — upload videos, update metadata, set thumbnails, manage playlists, moderate comments, search content, and bulk-edit via CSV |
 
@@ -22,6 +23,7 @@ Add this repository as a [Claude Code marketplace](https://code.claude.com/docs/
 claude plugin marketplace add https://github.com/dortort/skills
 
 # Install individual skills
+claude plugin install isc2-cpe-submission
 claude plugin install nlm-new-topic
 claude plugin install nlm-deepdive
 claude plugin install terraform
@@ -30,6 +32,7 @@ claude plugin install youtube
 
 After installation the skills are available as slash commands with the `dortort` namespace:
 
+- `/dortort:isc2-cpe-submission`
 - `/dortort:nlm-new-topic`
 - `/dortort:nlm-deepdive`
 - `/dortort:terraform`
