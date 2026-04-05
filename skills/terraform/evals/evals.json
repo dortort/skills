@@ -1,0 +1,108 @@
+{
+  "skill_name": "terraform",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need Terraform for an AWS ECS Fargate service behind an ALB. We already have a VPC (I'll pass the VPC ID and subnet IDs), and the container image is in ECR. The service should support high availability with configurable task count, and I need a separate module for the ALB and one for the ECS service. Put everything under infra/modules/. Target us-east-1.",
+      "expected_output": "A root module wiring ALB and ECS type modules together via composition, with dependency injection for VPC/subnets, polymorphic HA config, and clean validation.",
+      "files": [],
+      "expectations": [
+        "versions.tf exists in every module with required_version and required_providers using ~> constraints",
+        "Encapsulation: No module is a thin 1:1 resource wrapper — each encapsulates a complete infrastructure pattern with opinionated defaults (e.g., ALB module includes security group, target group, listener, not just the ALB resource)",
+        "Dependency Injection: VPC ID, subnet IDs, and IAM role ARNs are passed as input variables — no data source lookups for externally-owned resources",
+        "Composition: The root module primarily wires type modules together using module blocks, not raw resource blocks",
+        "Polymorphism: The ECS module uses feature toggles or conditional logic (e.g., desired_count, enable_container_insights) to adapt behavior",
+        "All variables have both a description and an explicit type (clean constructor interface)",
+        "All outputs have a description (clean public interface)",
+        "No files named after infrastructure types (no alb.tf, ecs.tf, iam.tf) and no numeric prefixes",
+        "terraform fmt, terraform init -backend=false, and terraform validate were run successfully",
+        "Provider documentation was consulted before writing resources"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Create a Terraform module for deploying a Cloud Run service on GCP that connects to a Cloud SQL PostgreSQL instance via private VPC connector. The caller will provide the project ID, VPC network self-link, and a subnet for the connector. I want the Cloud SQL instance to have automated backups and a private IP only. Put it in infra/gcp-app/.",
+      "expected_output": "Composed modules for Cloud Run + Cloud SQL with VPC connector, proper GCP provider versions, dependency injection, polymorphic HA config.",
+      "files": [],
+      "expectations": [
+        "versions.tf specifies the google provider with source hashicorp/google and a ~> version constraint",
+        "Dependency Injection: Project ID, VPC network, and subnet are input variables — no internal data source lookups for caller-owned resources",
+        "Encapsulation: Cloud SQL module encapsulates instance + database + user + backup config as a complete pattern, not a thin wrapper",
+        "Cloud SQL uses private IP only (ipv4_enabled = false) with no public IP assigned",
+        "Polymorphism: At least one feature toggle (e.g., high_availability) that changes module behavior conditionally",
+        "All variables have description and type; all outputs have description",
+        "No files named after resource types (no cloud_run.tf, cloud_sql.tf)",
+        "terraform fmt, init -backend=false, and validate were run",
+        "Provider docs were consulted for key resources before writing code"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want a Terraform module at infra/static-site/ for hosting a static website on AWS using S3 + CloudFront + ACM certificate + Route53 DNS record. I'll pass in the domain name, hosted zone ID, and any tags. It should handle both www and apex domain. This needs to be a single meaningful module, not a bunch of tiny ones.",
+      "expected_output": "A single cohesive Encapsulated Service module for static site hosting with clean interface, polymorphic domain handling, and validation.",
+      "files": [],
+      "expectations": [
+        "versions.tf with AWS provider using ~> constraint and latest stable version",
+        "Dependency Injection: Domain name, hosted zone ID, and tags are input variables — the module does not look up Route53 zones or other caller-owned resources",
+        "Encapsulation: The module is a single cohesive unit encoding the complete static-site pattern — not split into thin-wrapper sub-modules",
+        "The module includes S3 bucket, CloudFront distribution, ACM certificate, and Route53 records as a complete pattern",
+        "Polymorphism: Both www and apex domain are handled, ideally with a toggle controlling redirect direction",
+        "All variables have description and type; all outputs have description",
+        "No files named after resource types (no s3.tf, cloudfront.tf, acm.tf, route53.tf)",
+        "terraform fmt, init -backend=false, and validate were run"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Create Terraform modules for an Azure AKS cluster with an Azure Container Registry. The caller will pass the resource group name, location, VNet subnet ID for the AKS nodes, and any tags. The AKS cluster should use a system node pool with configurable VM size and node count, and the ACR should grant AKS pull access. Put it under infra/azure-app/. I want separate modules for AKS and ACR that get wired together in a root module.",
+      "expected_output": "Composed root module wiring AKS and ACR type modules, dependency injection for resource group and subnet, polymorphic node config, azurerm provider with latest version.",
+      "files": [],
+      "expectations": [
+        "versions.tf in every module with azurerm provider using ~> constraint",
+        "Dependency Injection: Resource group name, location, and VNet subnet ID are input variables — not looked up via data sources",
+        "Composition: Root module wires AKS and ACR modules together using module blocks",
+        "Encapsulation: AKS module encapsulates cluster + node pool + identity as a meaningful pattern, not a thin wrapper around azurerm_kubernetes_cluster",
+        "ACR grants AKS pull access (role assignment connecting the two modules)",
+        "Polymorphism: AKS node pool has configurable VM size and node count",
+        "All variables have description and type; all outputs have description",
+        "No files named after resource types and no numeric prefixes",
+        "terraform fmt, init -backend=false, and validate were run",
+        "Provider docs were consulted before writing resources"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "I have a messy single-file Terraform config at infra/legacy/main.tf that creates an AWS VPC, 2 subnets, an RDS PostgreSQL instance, and an EC2 instance with a security group. Everything is in one file with hardcoded values. Refactor this into a proper module hierarchy under infra/refactored/ with a networking module and an app module. The app module should receive the VPC ID and subnet IDs from the networking module. Keep the same resources but make it clean.",
+      "expected_output": "Refactored module hierarchy with networking and app type modules composed in a root module, dependency injection between them, no hardcoded values.",
+      "files": ["evals/files/legacy_main.tf"],
+      "expectations": [
+        "Composition: Root module wires networking and app modules together, passing outputs from networking as inputs to app",
+        "Dependency Injection: App module receives VPC ID and subnet IDs as variables from the networking module — no data source lookups",
+        "Encapsulation: Networking module encapsulates VPC + subnets as a pattern; app module encapsulates RDS + EC2 + security group",
+        "No hardcoded values remain — all environment-specific values are variables with sensible defaults",
+        "Polymorphism: At least one configurable behavior (e.g., instance size, multi-AZ for RDS)",
+        "All variables have description and type; all outputs have description",
+        "versions.tf in every module with ~> constraints",
+        "terraform fmt, init -backend=false, and validate were run"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Build Terraform modules for an AWS microservice that needs an RDS PostgreSQL database, an SQS queue for async processing, and a Lambda function that processes messages from the queue. The caller provides VPC ID, subnet IDs, and a KMS key ARN for encryption. I want three type modules (database, queue, processor) composed in a root module under infra/microservice/. The Lambda should be triggered by SQS events.",
+      "expected_output": "Three type modules composed in a root module with clean dependency injection between them. Database, queue, and processor modules each encapsulate a complete pattern.",
+      "files": [],
+      "expectations": [
+        "Composition: Root module wires database, queue, and processor modules together — passing connection info and ARNs between them",
+        "Dependency Injection: VPC ID, subnet IDs, and KMS key ARN are input variables — no internal lookups for caller-owned resources",
+        "Encapsulation: Each type module encapsulates a complete pattern (e.g., queue module includes SQS queue + dead-letter queue + encryption config, not just the queue resource)",
+        "The Lambda function is triggered by SQS via an event source mapping",
+        "Polymorphism: At least one feature toggle per module (e.g., multi-AZ for RDS, FIFO vs standard for SQS, reserved concurrency for Lambda)",
+        "All variables have description and type; all outputs have description",
+        "versions.tf in every module with ~> constraints",
+        "No files named after resource types",
+        "terraform fmt, init -backend=false, and validate were run",
+        "Provider docs were consulted before writing resources"
+      ]
+    }
+  ]
+}
