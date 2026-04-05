@@ -69,11 +69,12 @@ Add files beyond this set only when a distinct logical concern warrants separati
 
 Always use the **latest stable release** of Terraform and every provider. Never pin to an old version unless the user explicitly requires it.
 
-Before writing any `.tf` file, determine the current versions:
+Before writing any `.tf` file, look up the current versions:
 
-1. If you are confident the latest stable Terraform and provider versions are within your training data, use those versions directly.
-2. Otherwise, check the latest Terraform release at https://github.com/hashicorp/terraform/releases and each provider at https://registry.terraform.io/browse/providers to confirm.
+1. Check the latest Terraform release at https://github.com/hashicorp/terraform/releases — use the highest non-prerelease version tag.
+2. Check each required provider in the Terraform Registry at https://registry.terraform.io/browse/providers — confirm the latest published version.
 3. Write `versions.tf` with those versions before writing any other file.
+4. Note whether the latest versions match what you were trained on — this determines whether you need to consult provider documentation in Step 2.
 
 **`versions.tf` template:**
 
@@ -98,11 +99,11 @@ Use `~>` (pessimistic constraint operator) to allow patch updates within the pin
 
 Resource and data source arguments must match the current provider schema for the version pinned in `versions.tf`. Arguments get added, renamed, or deprecated between provider versions — using stale attribute names causes validation failures or silent misconfiguration.
 
-1. If the latest provider version is within your training data, you can write resources directly — but be alert to deprecated attributes and prefer their replacements.
-2. If you are unsure whether an attribute exists, has been renamed, or is deprecated in the pinned version, consult the provider documentation:
+1. **If the latest provider version matches what you were trained on:** you can write resources directly using your existing knowledge of the schema. No additional documentation lookup is needed.
+2. **If the latest provider version is newer than your training data:** consult the provider documentation for every resource and data source you write before using any attributes:
    - Terraform Registry: `https://registry.terraform.io/providers/<namespace>/<provider>/latest/docs/resources/<resource_type>`
    - Fallback: the provider's GitHub repository under `website/docs/r/`
-3. Use argument names exactly as documented — do not guess or abbreviate.
+3. Use argument names exactly as they appear in the schema — do not guess or abbreviate.
 
 ---
 
