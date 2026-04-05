@@ -1,0 +1,23 @@
+{
+  "skill_name": "cloudflare-iac",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a Cloudflare Worker that uses a KV namespace and a D1 database. Right now the IDs are hardcoded in wrangler.toml and I manage the infra by hand in the dashboard. I want to move to Terraform for the infra and automate deployments in GitHub Actions. The Worker is in a repo at the root, Terraform doesn't exist yet. Can you set this up?",
+      "expected_output": "A project structure with: Terraform config creating KV + D1 resources with outputs, a wrangler template with placeholder tokens, a bridge sync script, package.json with sync/deploy scripts, and a GitHub Actions workflow that runs terraform apply then npm run deploy.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We have a monorepo with two Workers — an API worker and a cron worker. Both share the same R2 bucket and KV namespace, but the API worker also has its own D1 database. Terraform already manages the zone and DNS but not the storage resources. We deploy with GitLab CI. Help me add the storage resources to Terraform and wire up Wrangler configs so both workers get the right bindings, all automated in the pipeline.",
+      "expected_output": "Terraform resources added for shared R2 + KV and API-specific D1 with outputs, two wrangler templates (one per worker) with correct bindings and tokens, a sync script that handles both workers, package.json scripts, and GitLab CI pipeline config.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I'm starting a new Cloudflare Pages project with a D1 database and KV for session storage. I want staging and production environments managed by Terraform, and the Wrangler config should support both envs. Deployments happen from a simple shell script we run in CI (no specific CI platform — just bash). Set up the whole IaC structure from scratch.",
+      "expected_output": "Terraform config with workspace-based or variable-based env separation for D1 + KV, a wrangler template with env blocks using per-environment tokens, a sync script, package.json scripts, and a deploy.sh that wraps terraform apply + npm run deploy with an environment argument.",
+      "files": []
+    }
+  ]
+}
