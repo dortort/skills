@@ -16,7 +16,7 @@
         "All outputs have a description (clean public interface)",
         "No files named after infrastructure types (no alb.tf, ecs.tf, iam.tf) and no numeric prefixes",
         "terraform fmt, terraform init -backend=false, and terraform validate were run successfully",
-        "Provider documentation was consulted before writing resources"
+        "Resource and data source arguments match the current provider schema — no deprecated or nonexistent attributes"
       ]
     },
     {
@@ -33,7 +33,7 @@
         "All variables have description and type; all outputs have description",
         "No files named after resource types (no cloud_run.tf, cloud_sql.tf)",
         "terraform fmt, init -backend=false, and validate were run",
-        "Provider docs were consulted for key resources before writing code"
+        "Resource and data source arguments match the current provider schema — no deprecated or nonexistent attributes"
       ]
     },
     {
@@ -67,7 +67,7 @@
         "All variables have description and type; all outputs have description",
         "No files named after resource types and no numeric prefixes",
         "terraform fmt, init -backend=false, and validate were run",
-        "Provider docs were consulted before writing resources"
+        "Resource and data source arguments match the current provider schema — no deprecated or nonexistent attributes"
       ]
     },
     {
@@ -101,7 +101,7 @@
         "versions.tf in every module with ~> constraints",
         "No files named after resource types",
         "terraform fmt, init -backend=false, and validate were run",
-        "Provider docs were consulted before writing resources"
+        "Resource and data source arguments match the current provider schema — no deprecated or nonexistent attributes"
       ]
     }
   ]

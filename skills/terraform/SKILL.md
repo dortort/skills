@@ -65,14 +65,14 @@ Add files beyond this set only when a distinct logical concern warrants separati
 
 ---
 
-## Step 1: Look Up Versions Before Writing Any Code
+## Step 1: Pin to the Latest Stable Versions
 
 Always use the **latest stable release** of Terraform and every provider. Never pin to an old version unless the user explicitly requires it.
 
-Before writing any `.tf` file, fetch current versions:
+Before writing any `.tf` file, determine the current versions:
 
-1. Check the latest Terraform release at https://github.com/hashicorp/terraform/releases — use the highest non-prerelease version tag.
-2. Check each required provider in the Terraform Registry at https://registry.terraform.io/browse/providers — navigate to the provider, confirm the latest published version.
+1. If you are confident the latest stable Terraform and provider versions are within your training data, use those versions directly.
+2. Otherwise, check the latest Terraform release at https://github.com/hashicorp/terraform/releases and each provider at https://registry.terraform.io/browse/providers to confirm.
 3. Write `versions.tf` with those versions before writing any other file.
 
 **`versions.tf` template:**
@@ -94,17 +94,15 @@ Use `~>` (pessimistic constraint operator) to allow patch updates within the pin
 
 ---
 
-## Step 2: Look Up Provider Documentation Before Writing Resources
+## Step 2: Verify Resource and Data Source Arguments Are Current
 
-Never write resource blocks or data source blocks from memory. Provider schemas change between versions — arguments are added, renamed, or deprecated.
+Resource and data source arguments must match the current provider schema for the version pinned in `versions.tf`. Arguments get added, renamed, or deprecated between provider versions — using stale attribute names causes validation failures or silent misconfiguration.
 
-For every resource or data source you write:
-
-1. Navigate to the provider's documentation page in the Terraform Registry: `https://registry.terraform.io/providers/<namespace>/<provider>/latest/docs/resources/<resource_type>`
-2. Verify the current argument names, required vs. optional fields, and any deprecation notices.
-3. Copy argument names exactly as documented — do not guess or abbreviate.
-
-If the registry page for a resource is unavailable, use the provider's GitHub repository under `website/docs/r/`.
+1. If the latest provider version is within your training data, you can write resources directly — but be alert to deprecated attributes and prefer their replacements.
+2. If you are unsure whether an attribute exists, has been renamed, or is deprecated in the pinned version, consult the provider documentation:
+   - Terraform Registry: `https://registry.terraform.io/providers/<namespace>/<provider>/latest/docs/resources/<resource_type>`
+   - Fallback: the provider's GitHub repository under `website/docs/r/`
+3. Use argument names exactly as documented — do not guess or abbreviate.
 
 ---
 
