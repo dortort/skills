@@ -10,6 +10,7 @@ A collection of [Agent Skills](https://agentskills.io) -- reusable instruction p
 | [nlm-deepdive](skills/nlm-deepdive/SKILL.md) | Deep dives into a subtopic within an existing NotebookLM notebook with parallel artifact generation |
 | [isc2-cpe-submission](skills/isc2-cpe-submission/SKILL.md) | Submits ISC2 CPE credits on cpe.isc2.org for CISSP, CCSP, and other ISC2 certifications — single or batch submissions via Playwright |
 | [terraform](skills/terraform/SKILL.md) | Writes Terraform infrastructure code following strict module abstraction principles, latest stable releases, provider doc lookups, and pre-commit format/init/validate |
+| [cloudflare-iac](skills/cloudflare-iac/SKILL.md) | Best practices for Cloudflare infrastructure as code using Terraform and Wrangler together — resource bridging, CI/CD, and project structure |
 | [youtube](skills/youtube/SKILL.md) | Manages YouTube channels and videos via the YouTube Data API v3 — upload videos, update metadata, set thumbnails, manage playlists, moderate comments, search content, and bulk-edit via CSV |
 
 ## Installation
@@ -27,6 +28,7 @@ claude plugin install isc2-cpe-submission
 claude plugin install nlm-new-topic
 claude plugin install nlm-deepdive
 claude plugin install terraform
+claude plugin install cloudflare-iac
 claude plugin install youtube
 ```
 
@@ -36,6 +38,7 @@ After installation the skills are available as slash commands with the `dortort`
 - `/dortort:nlm-new-topic`
 - `/dortort:nlm-deepdive`
 - `/dortort:terraform`
+- `/dortort:cloudflare-iac`
 - `/dortort:youtube`
 
 To remove a skill or the marketplace:
