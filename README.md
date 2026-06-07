@@ -12,6 +12,7 @@ A collection of [Agent Skills](https://agentskills.io) -- reusable instruction p
 | [terraform](skills/terraform/SKILL.md) | Writes Terraform infrastructure code following strict module abstraction principles, latest stable releases, provider doc lookups, and pre-commit format/init/validate |
 | [cloudflare-iac](skills/cloudflare-iac/SKILL.md) | Best practices for Cloudflare infrastructure as code using Terraform and Wrangler together — resource bridging, CI/CD, and project structure |
 | [youtube](skills/youtube/SKILL.md) | Manages YouTube channels and videos via the YouTube Data API v3 — upload videos, update metadata, set thumbnails, manage playlists, moderate comments, search content, and bulk-edit via CSV |
+| [nanobanana](skills/nanobanana/SKILL.md) | Generates and edits raster images via the Gemini CLI nanobanana extension — featured images, thumbnails, banners, app icons, rendered diagrams, patterns, illustrations, photo restoration, and story panels |
 
 ## Installation
 
@@ -30,6 +31,7 @@ claude plugin install nlm-deepdive
 claude plugin install terraform
 claude plugin install cloudflare-iac
 claude plugin install youtube
+claude plugin install nanobanana
 ```
 
 After installation the skills are available as slash commands with the `dortort` namespace:
@@ -40,6 +42,7 @@ After installation the skills are available as slash commands with the `dortort`
 - `/dortort:terraform`
 - `/dortort:cloudflare-iac`
 - `/dortort:youtube`
+- `/dortort:nanobanana`
 
 To remove a skill or the marketplace:
 

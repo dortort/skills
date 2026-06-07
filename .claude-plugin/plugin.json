@@ -1,10 +1,10 @@
 {
   "name": "dortort",
-  "description": "NotebookLM automation, Terraform IaC, and YouTube channel management skills — create learning packages, write infrastructure as code, and manage YouTube channels with the Data API",
+  "description": "NotebookLM automation, Terraform IaC, YouTube channel management, and image generation skills — create learning packages, write infrastructure as code, manage YouTube channels with the Data API, and generate images with Nano Banana",
   "version": "1.0.0",
   "author": {
     "name": "dortort"
   },
-  "keywords": ["notebooklm", "learning", "nlm", "terraform", "iac", "infrastructure", "youtube", "video", "channel", "creator"],
+  "keywords": ["notebooklm", "learning", "nlm", "terraform", "iac", "infrastructure", "youtube", "video", "channel", "creator", "image", "image-generation", "nanobanana", "gemini"],
   "skills": "skills"
 }
